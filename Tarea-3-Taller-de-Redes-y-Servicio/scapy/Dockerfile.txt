@@ -1,0 +1,7 @@
+FROM python:3.10-slim
+
+RUN pip install --no-cache-dir scapy
+
+RUN apt update && apt install -y iputils-ping tcpdump net-tools
+
+CMD ["python3"]

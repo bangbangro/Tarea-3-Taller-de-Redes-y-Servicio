@@ -1,0 +1,3 @@
+from scapy.all  import * 
+pkts = sniff(filter="tcp port 80", count=10)
+pkts.summary()

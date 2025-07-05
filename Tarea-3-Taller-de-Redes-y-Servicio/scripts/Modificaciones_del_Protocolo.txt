@@ -1,0 +1,30 @@
+from scapy.all import *
+
+ip = IP(dst="172.18.0.1") 
+tcp = TCP(sport=RandShort(), dport=80, flags="PA", seq=1000, ack=100)
+http = b"POST / HTTP/1.1\r\nHost: nginx\r\n\r\n"
+
+pkt = ip / tcp / Raw(load=http)
+send(pkt)
+
+--------------------------------------------------------
+
+from scapy.all import *
+
+ip = IP(dst="172.18.0.1")
+tcp = TCP(sport=RandShort(), dport=80, flags="PA", seq=1001, ack=100)
+http = b"GET / HTTP/1.1\r\nHost: hacker.local\r\n\r\n"
+
+pkt = ip / tcp / Raw(load=http)
+send(pkt)
+
+----------------------------------------------------------
+
+from scapy.all import *
+
+ip = IP(dst="172.18.0.1")
+tcp = TCP(sport=RandShort(), dport=80, flags="PA", seq=1002, ack=100)
+http = b"GET / HTTP/1.1\r\nHost: nginx\r\nUser-Agent: <script>alert(1)</script>\r\n\r\n"
+
+pkt = ip / tcp / Raw(load=http)
+send(pkt)

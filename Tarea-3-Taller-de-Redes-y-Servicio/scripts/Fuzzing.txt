@@ -1,0 +1,13 @@
+from scapy.all import *
+pkt1 = IP(dst="172.18.0.2")/TCP(dport=80, sport=RandShort(), flags="PA")/ Raw(load=RandString(size=100))
+send(pkt1)
+
+Print(">> Enviando Fuzzing 1")
+
+--------------------------------------------------------------------
+
+from scapy.all import *
+pkt2 = IP(dst="172.18.0.2")/TCP(dport=80, sport=RandShort(), flags="FPU")/ Raw(load="FUZZ!!!")
+send(pkt2)
+
+Print(">> Enviando Fuzzing 2")
