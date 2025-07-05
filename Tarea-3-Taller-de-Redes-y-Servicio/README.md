@@ -75,7 +75,7 @@ pkts = sniff(filter="tcp port 80", count=10)
 pkts.summary()
 ```
 Esto permite observar el intercambio entre cliente y servidor HTTP
-Ver captura: ` imágenes/interceptar.png`
+Ver captura: ` imagenes/interceptarTrafico.png`
 
 ## 5. Fuzzing de Tráfico HTTP
 
@@ -88,7 +88,7 @@ send(pkt1)
 
 Print(">> Enviando Fuzzing 1")
 ```
-Ver captura: `imágenes/fuzzing1.png`
+Ver captura: `imagenes/fuzzing1.png`
 
 ----------
 
@@ -102,7 +102,7 @@ send(pkt2)
 
 Print(">> Enviando Fuzzing 2")
 ```
-Ver captura: `imágenes/fuzzing2.png`
+Ver captura: `imagenes/fuzzing2.png`
 
 ----------
 
@@ -120,7 +120,7 @@ http = b"POST / HTTP/1.1\r\nHost: nginx\r\n\r\n"
 pkt = ip / tcp / Raw(load=http)
 send(pkt)
 ```
-Para ver las modificaciones: `Capturas Wireshark/modificacion1.png`
+Para ver las modificaciones: `capturas_Wireshark/modificacion1.png`
 
 ### 6.1 Modificacion 2
 Se altera el valor del campo Host en la cabecera HTTP, cambiándolo de el valor nginx a uno inexistente 
@@ -134,7 +134,7 @@ http = b"GET / HTTP/1.1\r\nHost: hacker.local\r\n\r\n"
 pkt = ip / tcp / Raw(load=http)
 send(pkt)
 ```
-Para ver las modificaciones: `Capturas Wireshark/modificacion2.png`
+Para ver las modificaciones: `capturas_Wireshark/modificacion2.png`
 
 ### 6.3 Modificacion 3
 Se altera el contenido del encabezado User-Agenr de la solicitud HTTP, con un fragmento de código JavaScript ().
@@ -148,5 +148,5 @@ http = b"GET / HTTP/1.1\r\nHost: nginx\r\nUser-Agent: <script>alert(1)</script>\
 pkt = ip / tcp / Raw(load=http)
 send(pkt)
 ```
-Para ver las modificaciones: `Capturas Wireshark/modificacion1.png`
+Para ver las modificaciones: `capturas_Wireshark/modificacion1.png`
 
